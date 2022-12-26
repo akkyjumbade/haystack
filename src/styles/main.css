@@ -37,7 +37,7 @@ body, #__next {
 }
 @media screen and (max-width: 700px) {
    .body__content {
-      margin-top: 20% !important;
+      margin-top: 13% !important;
    }
 }
 
@@ -306,23 +306,30 @@ body, #__next {
 .SepsisChart #green {
    transition: all .5s ease;
 }
-.SepsisChart #gray:hover {
+.SepsisChart #gray:hover,
+.SepsisChart #gray.active {
    transform: translate(-11px, -13px);
 }
-.SepsisChart #red:hover {
+.SepsisChart #red:hover,
+.SepsisChart #red.active {
    transform: translate(8px, 16px);
 }
-.SepsisChart #blue:hover {
+.SepsisChart #blue:hover,
+.SepsisChart #blue.active {
    transform: translate(10px, 16px);
 }
-.SepsisChart #green:hover {
+.SepsisChart #green:hover,
+.SepsisChart #green.active {
    transform: translate(-8px, 14px);
 }
 
 .table--home {
 
 }
-@media screen and (min-width: 800px) {
+.table--home tr td:first-child {
+   width: 295px;
+}
+@media screen and (min-width: 1024px) {
    .table--home tr td:first-child {
       width: 295px;
    }
@@ -337,6 +344,16 @@ body, #__next {
    }
 }
 
+@media screen and (max-width: 768px)
+{
+   .table--home tbody tr:hover td {
+      font-size: 13px;
+   }
+   .table--home tr th:first-child > div,
+   .table--home tr td:first-child > div {
+      width: 10rem;
+   }
+}
 
 
 
@@ -468,6 +485,10 @@ body, #__next {
   {
    display: none;
   }
+  .swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 15px !important;
+    color: gray !important;
+}
   .bg-highlight {
    background-image: var(--bg);
    background-repeat: no-repeat;
@@ -479,4 +500,38 @@ body, #__next {
 {
    padding:0 18px !important;
 }
+}
+.break-word
+{
+   overflow-wrap: break-word;
+}
+.post-content ol
+{
+   padding-left:1rem;
+   list-style: decimal;
+   font-size: 0.85rem;
+}
+.post-content ul
+{
+   padding-left:1rem;
+   list-style: inherit;
+   
+   font-size: 0.85rem;
+}
+
+.share-btn__menu {
+   width: 0px;
+   transform-origin: center right;
+   transition: all .2s ease-out;
+   overflow: hidden;
+   white-space: nowrap;
+   opacity: 0;
+}
+.share-btn__menu.is-opened
+{
+   width: 200px;
+   opacity: 1;
+}
+thead tr , tbody tr{
+   vertical-align: top;
 }

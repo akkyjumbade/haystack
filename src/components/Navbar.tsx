@@ -49,7 +49,7 @@ const StyledNavbar = styled.nav`
 
    @media screen and (max-width: 600px)
    {
-      padding: 0.5rem 0 0.5rem 0;
+      padding: 0.8rem 0 0.8rem 0;
       .nav__menu-list {
          padding: 1.5rem 1rem;
          position: fixed;
@@ -125,10 +125,10 @@ const Navbar = ({ renderMenu }) => {
    return (
       <StyledNavbar isPinned={isPinned} className={`${isPinned ? 'header-pinned' : ''} ${inView ? '' : 'bg-white'}`} >
          <nav className="navbar-main container mx-auto flex justify-between gap-4">
-            <div className="navbar-brand">
+            <div className="navbar-brand flex">
                <Link href={"/"}>
                   <a className="flex px-3 md:px-0">
-                     <Image src={settings.logo_url} alt="" className="navbar-logo" width={'250'} height={'60'} />
+                  <img src={settings.logo_url} alt="" className="navbar-logo" width={'250'} height={'60'} />
                   </a>
                </Link>
             </div>
@@ -203,7 +203,7 @@ const Navbar = ({ renderMenu }) => {
                            {menus.sciencecornerHeader.map((mn, mnIndex) => (
                            <li key={`scm_${mnIndex}`}>
                            <Link key={`mn${mnIndex}`} href={mn.url}>
-                           <a className={`px-3 font-regular cursor-pointer hover:text-blue-600 ${router.pathname == mn.url ? 'active text-blue-600': ''}`}>- {mn.label}</a>
+                           <a className={`px-3 font-regular cursor-pointer hover:text-blue-600 ${router.pathname == mn.url ? 'active text-blue-600': ''}`}>{mn.label}</a>
                            </Link>
                            </li>
                            ))}
@@ -227,7 +227,7 @@ const Navbar = ({ renderMenu }) => {
                            {menus.productsHeader.map((mn, mnIndex) => (
                            <li key={`mnss_${mnIndex}`}>
                            <Link key={`mn${mnIndex}`} href={mn.url}>
-                           <a className={`px-3 font-regular cursor-pointer hover:text-blue-600 ${router.pathname == mn.url ? 'active text-blue-600': ''}`}>- {mn.label}</a>
+                           <a className={`px-3 font-regular cursor-pointer hover:text-blue-600 ${router.pathname == mn.url ? 'active text-blue-600': ''}`}>{mn.label}</a>
                            </Link>
                            </li>
                            ))}
@@ -236,7 +236,7 @@ const Navbar = ({ renderMenu }) => {
                   </div>
                </div>
             </div>
-            <div className="mt-3 mr-3 md:hidden">
+            <div className="md:mt-3 mr-3 md:hidden">
                <MenuIcon className="w-8 h-8 cursor-pointer" onClick={() => setNavActive(true)} />
             </div>
          </nav>
