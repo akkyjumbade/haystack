@@ -26,9 +26,11 @@ position: relative;
    .map_marker_icon {
       width: var(--size);
       transition: all .1s ease-out;
+      opacity:0.5;
    }
    &:hover .map_marker_icon {
       transform: scale(1.5);
+      opacity:1;
    }
 }
 .marker__text--lg {
@@ -41,7 +43,7 @@ position: relative;
    display: none;
    position: absolute;
    left: 0;
-   top: 115%;
+   top: 120%;
 }
 .map__marker--india {
 
@@ -60,7 +62,7 @@ function WorldMap(props) {
    return (
       <div className="map map--world">
          <div className="mb-3">
-            <img src={'/assets/map.svg'} className="w-full" alt="World map" />
+            <img src={'/assets/map.svg'} className="w-full opacity-40" alt="World map" />
          </div>
          {locations?.map((loc, locIndex) => (
             <div key={`loc_${locIndex}`} className={`map__marker map__marker--${loc.id}`} style={{ '--left': loc.position.x, '--top': loc.position.y }} >
