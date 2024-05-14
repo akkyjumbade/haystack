@@ -49,7 +49,7 @@ const StyledNavbar = styled.nav`
 
    @media screen and (max-width: 600px)
    {
-      padding: 0.5rem 0 0.5rem 0;
+      padding: 0.8rem 0 0.8rem 0;
       .nav__menu-list {
          padding: 1.5rem 1rem;
          position: fixed;
@@ -125,10 +125,10 @@ const Navbar = ({ renderMenu }) => {
    return (
       <StyledNavbar isPinned={isPinned} className={`${isPinned ? 'header-pinned' : ''} ${inView ? '' : 'bg-white'}`} >
          <nav className="navbar-main container mx-auto flex justify-between gap-4">
-            <div className="navbar-brand">
+            <div className="navbar-brand flex">
                <Link href={"/"}>
                   <a className="flex px-3 md:px-0">
-                     <Image src={settings.logo_url} alt="" className="navbar-logo" width={'250'} height={'60'} />
+                  <img src={settings.logo_url} alt="" className="navbar-logo" width={'250'} height={'60'} />
                   </a>
                </Link>
             </div>
@@ -137,7 +137,7 @@ const Navbar = ({ renderMenu }) => {
                <div className="close md:hidden">
                   <XIcon className="w-8 h-8" onClick={toggleMenu} />
                </div>
-               <div className="mb-3 md:mb-6 text-sm flex flex-col md:flex-row gap-6 text-gray-500 mt-6 justify-center md:justify-end md:mt-0">
+               <div className="mb-3 md:mb-6 text-sm flex flex-col md:flex-row gap-6 text-gray-500 mt-6 justify-center md:justify-end md:mt-0 social-media">
                   <a  className="text-dark" href={`mailto:${settings.email}`}>{settings.email}</a>
                   <div className="mb-3 md:mb-2 text-lg md:text-sm flex gap-6 md:gap-2 text-gray-500 md:mt-0">
                   {settings.facebook_url ? (
@@ -203,7 +203,7 @@ const Navbar = ({ renderMenu }) => {
                            {menus.sciencecornerHeader.map((mn, mnIndex) => (
                            <li key={`scm_${mnIndex}`}>
                            <Link key={`mn${mnIndex}`} href={mn.url}>
-                           <a className={`px-3 font-regular cursor-pointer hover:text-blue-600 ${router.pathname == mn.url ? 'active text-blue-600': ''}`}>- {mn.label}</a>
+                           <a className={`px-3 font-regular cursor-pointer hover:text-blue-600 ${router.pathname == mn.url ? 'active text-blue-600': ''}`}>{mn.label}</a>
                            </Link>
                            </li>
                            ))}
@@ -227,7 +227,7 @@ const Navbar = ({ renderMenu }) => {
                            {menus.productsHeader.map((mn, mnIndex) => (
                            <li key={`mnss_${mnIndex}`}>
                            <Link key={`mn${mnIndex}`} href={mn.url}>
-                           <a className={`px-3 font-regular cursor-pointer hover:text-blue-600 ${router.pathname == mn.url ? 'active text-blue-600': ''}`}>- {mn.label}</a>
+                           <a className={`px-3 font-regular cursor-pointer hover:text-blue-600 ${router.pathname == mn.url ? 'active text-blue-600': ''}`}>{mn.label}</a>
                            </Link>
                            </li>
                            ))}
@@ -236,7 +236,7 @@ const Navbar = ({ renderMenu }) => {
                   </div>
                </div>
             </div>
-            <div className="mt-3 mr-3 md:hidden">
+            <div className="md:mt-3 mr-3 md:hidden">
                <MenuIcon className="w-8 h-8 cursor-pointer" onClick={() => setNavActive(true)} />
             </div>
          </nav>

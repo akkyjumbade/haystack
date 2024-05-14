@@ -37,7 +37,7 @@ const StyledHeroSection = styled(Section)`
    }
 
 `
-const HeroSection = ({ title, date, description, citation, image, url }) => {
+const HeroSection = ({ title, date, description, citation, image, url, authorbio }) => {
    return (
       <StyledHeroSection className="HeroSection " data-aos="fade-up">
          <Section.Container className="mx-auto ">
@@ -56,7 +56,7 @@ const HeroSection = ({ title, date, description, citation, image, url }) => {
                   <h3 className="mb-4 md:mb-12 text-3xl font-bold md:w-4/5">
                      {title}
                   </h3>
-                  <p className="font-semibold mb-4 md:mb-8 text-blue-600 text-sm">{citation}</p>
+                  <p className="font-semibold mb-4 md:mb-8 text-blue-600 text-sm">{citation}<br></br> {authorbio}</p>
                   <p className="font-base text-muted line-clamp-4 md:w-4/5">
                      {description}
                   </p>
@@ -84,22 +84,23 @@ export default function Diagnostician({ Component, pageProps, posts, settings })
             url={`/blog/${heroPost.slug}`}
             description={heroPost.excerpt}
             image={heroPost.image_url}
-            citation={`by ${heroPost.author_name}, ${heroPost.author_bio}`}
+            citation={`by ${heroPost.author_name}`}
+            authorbio={`${heroPost.author_bio}`}
          />
          <SectionBlogPosts
             title={'Recent Articles'}
-            enableCarousel={true}
-            posts={orderBy(otherPosts, 'date', 'desc')}
+            posts={orderBy(posts, 'date', 'desc')}
+            enableCarousel={posts.length > 1}
          />
          <SectionPosts
-            enableCarousel={webinars.data?.length > 3}
+            enableCarousel={webinars.data?.length > 1}
             className="webinar"
             renderHeaderRight={() => (
                <>
                   <a href="https://www.youtube.com/@haystackanalytics3946" className="flex items-center gap-3 text-sm mb-4 md:mb-8">
-                     <img src="https://yt3.ggpht.com/IorwJ9Fi2ZSmiRtYqha8GiI9qJYSROhiahjFn-K9_ARla8lzC9OiLCSWHhh4Yix9uisYm7Hvsg=s176-c-k-c0x00ffffff-no-rj" alt="Haystack Analytics" className="w-10 h-10" />
+                     <img src="https://yt3.ggpht.com/IorwJ9Fi2ZSmiRtYqha8GiI9qJYSROhiahjFn-K9_ARla8lzC9OiLCSWHhh4Yix9uisYm7Hvsg=s176-c-k-c0x00ffffff-no-rj" alt="HaystackAnalytics" className="w-10 h-10" />
                      <div className="mr-3">
-                        <p className="font-semibold mb-0">Haystack Analytics</p>
+                        <p className="font-semibold mb-0">HaystackAnalytics</p>
                         <span className="text-xs">77 subscribers</span>
                      </div>
                      <span className="bg-black text-white px-4 py-2 rounded-full">SUBSCRIBE</span>
@@ -116,7 +117,6 @@ export default function Diagnostician({ Component, pageProps, posts, settings })
 
 export async function getStaticProps(context) {
    let posts = getActivePosts()
-   console.log({ posts })
    const settings = getSettings()
 
    return {

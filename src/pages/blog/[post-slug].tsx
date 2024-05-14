@@ -46,10 +46,10 @@ export default function Post({ Component, pageProps, post = {}, }) {
             </Section.Container>
          </Section>
          {posts ? (
-         <SectionBlogPosts
+         <SectionPosts
             title={`Recent Articles`}
             posts={orderBy(posts, 'date', 'desc')}
-            enableCarousel={posts.length > 3}
+            enableCarousel={posts.length > 1}
          />
          ): null}
       </StyledHome>
@@ -73,8 +73,6 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths(context) {
    let posts = getActivePosts()
-
-   console.log({ posts })
    let slugs = []
 
    return {

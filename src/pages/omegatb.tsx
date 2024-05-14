@@ -3,8 +3,6 @@
 import testimonials from "../json/testimonials.json";
 import research_papers from "../json/research_papers.json";
 import AppTemplate from "../components/templates/AppTemplate";
-import { getSettings } from "../utils/settings";
-import { getActiveNews } from "../utils/news";
 import styled from "@emotion/styled";
 import Section from '../components/atoms/Section'
 import SectionGridItems from "../components/organisms/SectionGridItems";
@@ -13,6 +11,7 @@ import SectionPosts from "../components/organisms/SectionPosts";
 import ResearchItem from "../components/molecules/ResearchItem";
 import TBWorldMap from "../components/TBWorldMap";
 import TBPieChart from "../components/TBPieChart";
+import Head from "next/head";
 
 
 const page = {
@@ -30,7 +29,7 @@ const StyledHome = styled(AppTemplate)`
 `
 
 const StyledHeroSection = styled(Section)`
-  
+
    background-position: right;
    background-image: url("/assets/omega-tb-banner.png");
    background-size: cover;
@@ -60,7 +59,7 @@ const HeroSection = () => {
          <Section.Container className="mx-auto px-0">
             <div className="grid grid-cols-1 md:grid-cols-2">
                <div className="grid__col  py-8 px-3 md:px-0">
-                  <h3 className="mb-4 text-4xl font-extrabold">
+                  <h3 className="mb-4 text-4xl font-extrabold 2xl:!text-5xl">
                      ΩTB® is a <br />
                      Universal Drug <br />
                      Resistance Test for TB
@@ -81,10 +80,78 @@ const HeroSection = () => {
    )
 }
 
+const worldMapLocations = [
+   {
+      id: 'india',
+      label: 'INDIA',
+      text: '27%',
+      position: { x: '70.5%', y: '38%' },
+      smPosition: { x: '70.5%', y: '38%' },
+   },
+   {
+      id: 'pakistan',
+      label: 'PAKISTAN',
+      text: '6%',
+      position: { x: '68%', y: '30%' },
+      smPosition: { x: '68%', y: '30%' },
+   },
+   {
+      id: 'china',
+      label: 'CHINA',
+      text: '9%',
+      position: { x: '76%', y: '30%' },
+      smPosition: { x: '76%', y: '30%' },
+   },
+   {
+      id: 'nigeria',
+      label: 'NIGERIA',
+      text: '4%',
+      position: { x: '51%', y: '50%' },
+      smPosition: { x: '51%', y: '50%' },
+   },
+   {
+      id: 'bangladesh',
+      label: 'BANGLADESH',
+      text: '4%',
+      position: { x: '73%', y: '37%' },
+      smPosition: { x: '73%', y: '37%' },
+   },
+   {
+      id: 'indonesia',
+      label: 'INDONESIA',
+      text: '8%',
+      position: { x: '79%', y: '53%' },
+      smPosition: { x: '79%', y: '53%' },
+   },
+   {
+      id: 'philippines',
+      label: 'PHILIPPINES',
+      text: '6%',
+      position: { x: '83%', y: '38%' },
+      smPosition: { x: '83%', y: '38%' },
+   },
+   {
+      id: 'south_africa',
+      label: <span>SOUTH<br/>AFRICA</span>,
+      text: '3%',
+      position: { x: '55%', y: '70%' },
+      smPosition: { x: '55%', y: '70%' },
+   },
+   {
+      id: '_rest',
+      label: 'REST',
+      text: '33%',
+      position: { x: '90%', y: '70%' },
+      smPosition: { x: '90%', y: '70%' },
+   },
+]
 export default function OmegaTab({ Component, pageProps, news, settings }) {
 
    return (
       <StyledHome settings={settings}>
+         <Head>
+            <title>Omega TB</title>
+         </Head>
          <HeroSection />
          <Section className="">
             <Section.Container className="container mx-auto py-12">
@@ -93,14 +160,14 @@ export default function OmegaTab({ Component, pageProps, news, settings }) {
                </h3>
                <div className="flex flex-col md:flex-row gap-4 my-8">
                   <div className="md:w-4/12">
-                     <h3 className="text-md font-bold">India accounts for <big className="text-blue-600">27Lakh</big> TB cases<br />out of <big className="text-blue-600">1Cr</big> cases across the world.</h3>
+                     <h3 className="text-md font-bold">India accounts for <big className="text-blue-600">2.7 million</big> cases out of <big className="text-blue-600">10 million</big> cases across the world.</h3>
                      <div className="mb-12 flex"></div>
                      {/* <img src="/assets/tb-pie-chart.png" alt="tb-pie-chart" /> */}
                      <TBPieChart />
                   </div>
                   <div className="flex-1">
                      {/* <img src="/assets/tb-world-map.png" alt="tb-world-map" className="map-image"/> */}
-                     <TBWorldMap />
+                     <TBWorldMap locations={worldMapLocations} />
                   </div>
                </div>
             </Section.Container>
@@ -139,7 +206,7 @@ export default function OmegaTab({ Component, pageProps, news, settings }) {
                                     <span className="font-semibold">{'ΩTB®'}</span>
                                  </td>
                                  <td className="p-3">
-                                    <div>{'18 antibiotics including bedaquiline, delamanid, etc.'}</div>
+                                    <div>{'18 antibiotics including bedaquiline and delamanid'}</div>
                                  </td>
                               </tr>
                               <tr className="bg-gray-trans mb-3 text-sm">
@@ -152,7 +219,7 @@ export default function OmegaTab({ Component, pageProps, news, settings }) {
                                     <span>Culture Test</span>
                                  </td>
                                  <td className="p-3 py-1">
-                                    <div>{'13 - 15 anti-biotics'}</div>
+                                    <div>{'13 - 15 antibiotics'}</div>
                                  </td>
                               </tr>
                               <tr className="bg-gray-trans-1  mb-3 text-sm">
@@ -183,12 +250,11 @@ export default function OmegaTab({ Component, pageProps, news, settings }) {
                               </tr>
                            </tbody>
                         </table>
-                        <p class="text-xs text-muted">*For smear positive samples</p>
                      </div>
                   </div>
                   <div className=" border my-4 md:my-0 md:ml-12 border-gray-300"></div>
                   <div className="md:w-5/12 ">
-                     <h4>ΩTB<sup>®</sup> Assessment Profile</h4>
+                     <h4>ΩTB<sup>®</sup> Assessment Profile</h4>
                      <div className="flex gap-4 md:mt-4">
                         <div className="w-6/12">
                            <img src="/assets/omega-tb-assessment-profile.png" alt="omega-tb-assessment-profile" />
@@ -222,12 +288,12 @@ export default function OmegaTab({ Component, pageProps, news, settings }) {
             </Section.Container>
          </Section>
          <SectionGridItems
-            title={`Benefits of ΩTB®`}
+            title={`Benefits of ΩTB®`}
             titleClassName="text-center"
             gridClassName={'grid-cols-1 md:grid-cols-4 gap-8 w-11/12 mx-auto'}
             items={[
                { title: 'Comprehensive', thumbnailUrl: '/assets/testtube.svg', description: `DR profile of 18 drugs, Mixed infections and Co-infections incl NTM` },
-               { title: 'Validated', thumbnailUrl: '/assets/time.svg', description: `Tested and validated on >10,000 genomes and >300 clinical samples` },
+               { title: 'Validated', thumbnailUrl: '/assets/time.svg', description: `Tested and validated on >10,000 genomes and >1000 clinical samples` },
                { title: 'Accurate', thumbnailUrl: '/assets/micro.svg', description: `High sensitivity and specificity comparable to molecular methods` },
                { title: 'Affordable', thumbnailUrl: '/assets/hand.svg', description: `Test cost less than or comparable to culture testing` },
             ]}
@@ -249,17 +315,5 @@ export default function OmegaTab({ Component, pageProps, news, settings }) {
    )
 }
 
-export async function getStaticProps(context) {
-   let news = getActiveNews()
-   console.log({ news })
-   const settings = getSettings()
-
-   return {
-      props: {
-         news: JSON.parse(JSON.stringify(news)),
-         settings: JSON.parse(JSON.stringify(settings)),
-      }, // will be passed to the page component as props
-   }
-}
 
 
